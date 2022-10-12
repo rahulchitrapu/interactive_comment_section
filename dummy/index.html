@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive comments section</title>
+  <link href='https://fonts.google.com/specimen/Rubik' rel='stylesheet'>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pull dynamic content from the data.json file -->
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+  <div class="container">
+    <ul class="list_of_replies">
+      <li  class="message">
+        <div class="message_container">
+          <div class="likes">
+            <button class="like"><img src="./images/icon-plus.svg"/></button>
+            <span class="like_count">12</span>
+          <button class="dislike"><img src="./images/icon-minus.svg"/></button>
+          </div>
+          <div class="message_body">
+              <div class="message_navbar">
+                <div class="message_navbar_left">
+                  <img src="./images/avatars/image-amyrobson.png"/>
+                  <p class="name">amyrobson</p>
+                  <p class="time">1 month ago</p>
+                </div>
+                <div class="message_navbar_right">
+                    <img src="./images/icon-reply.svg"/>
+                    <span>reply</span>
+                </div>
+                
+              </div>
+              <div class="message_content">
+                  <p>
+                    "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
+                  </p>
+              </div>
+          </div>
+        </div>   
+      </li>
+      <li class="message">
+        <div class="none">
+          <img src="./images/avatars/image-juliusomo.webp"/>
+          <input type="text" placeholder="add a comment"/>
+          <button type="submit" class="send">SEND</button>
+        </div>
+      </li>
+    </ul>
+
+    <!--add comment-->
+    <div class="add_comment">
+      <img src="./images/avatars/image-juliusomo.webp"/>
+      <input type="text" placeholder="add a comment"/>
+      <button type="submit">SEND</button>
+    </div>
+  </div>
+  <!-- <script type="text/javascript" src="./data.json"></script> -->
+  <script type="module" src="index.js"></script>
+</body>
+</html>
