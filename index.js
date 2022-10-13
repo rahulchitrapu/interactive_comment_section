@@ -4,7 +4,18 @@ let {currentUser,comments}=data
 let id=5
 
 
-// for html body
+if(window.localStorage.getItem("data")==undefined){
+    window.localStorage.setItem("data",JSON.stringify(comments))
+}
+if(localStorage.getItem("id")==undefined){
+    window.localStorage.setItem("id",id)
+}
+id=parseInt(localStorage.getItem("id"))
+comments=JSON.parse(localStorage.getItem("data"))
+
+
+
+
 
 //for messages
 comments.forEach((e)=>{
@@ -31,6 +42,11 @@ const addBtn=document.getElementById("send")
 addBtn.addEventListener("click",()=>{
     let content=document.getElementById("send_input").value
     let obj=createComment(id,content,"today")
+    comments.push(obj)
+    // console.log(comments)
+    localStorage.setItem("data",JSON.stringify(comments))
+    window.localStorage.setItem("data",JSON.stringify(comments))
+    comments=JSON.parse(window.localStorage.getItem("data"))
     const list=document.querySelector(".list_of_replies")
     list.innerHTML+=createMessage(obj,"","delete")
     document.getElementById("send_input").value=""
@@ -38,10 +54,11 @@ addBtn.addEventListener("click",()=>{
     like()
     replybuttons()
     sendbuttons()
-   
     deleteReplay()
 
     id++
+    window.localStorage.setItem("id",id)
+    id=parseInt(localStorage.getItem("id"))
 })
 
 
@@ -67,18 +84,21 @@ function sendbuttons(){
                     let content=document.querySelector(`#content${num}`).value
                     let obj=addReply(id,content,"today",e.user.username)
                     e.replies.push(obj)
-    
-                    // localStorage.setItem("comments",JSON.stringify(comments))
+                    console.log(e)
+                    console.log(comments)
+                    localStorage.setItem("data",JSON.stringify(comments))
                     let reply_message=document.querySelector(`#reply_messages_${e.id}`)
                     reply_message.innerHTML+=createMessage(obj,"reply_message")
                     dislike()
                     like()
                     replybuttons()
-                    
+                    cancelId()
                     deleteReplay()
                                     
                     document.querySelector(`#content${num}`).value=""   
                     id++
+                    window.localStorage.setItem("id",id)
+                    id=localStorage.getItem("id")
                 }
             })
     
@@ -135,7 +155,8 @@ function deleteReplay(){
     let deleteBtns=document.querySelectorAll(`.unlink`)
     deleteBtns.forEach(deleteBtn=>{
         deleteBtn.addEventListener("click",()=>{
-            deleteFunc(deleteBtn.id)
+            
+            deleteFunc(deleteBtn.classList[1])
         })
     })
 }
@@ -177,7 +198,7 @@ function createMessage(e,classname,newCmt){
                             <img src="./images/icon-edit.svg"/>
                             <span>edit</span>
                         </div>
-                        <div class="unlink" id="delete${e.id}">
+                        <div class="unlink ${e.id}" id="delete${e.id}">
                             <img src="./images/icon-delete.svg"/>
                             <span ">delete</span>
                         </div>
@@ -314,9 +335,13 @@ function cancelId(){
 
 
 function deleteFunc(id){
-    let ele=document.querySelector(`#${id}`)
+    let ele=document.querySelector(`#delete${id}`)
     let main=ele.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
-    main.removeChild(ele.parentElement.parentElement.parentElement.parentElement.parentElement)
+    if(confirm("are you sure?")==true){
+        main.removeChild(ele.parentElement.parentElement.parentElement.parentElement.parentElement)
+        console.log(id)
+    }
+    
     
 }
 
