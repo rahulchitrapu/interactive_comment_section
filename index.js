@@ -38,12 +38,7 @@ addBtn.addEventListener("click",()=>{
     like()
     replybuttons()
     sendbuttons()
-    // let deleteBtns=document.querySelectorAll(`.unlink`)
-    // deleteBtns.forEach(deleteBtn=>{
-    //     deleteBtn.addEventListener("click",()=>{
-    //         deleteFunc(deleteBtn.id)
-    //     })
-    // })
+   
     deleteReplay()
 
     id++
@@ -79,7 +74,7 @@ function sendbuttons(){
                     dislike()
                     like()
                     replybuttons()
-                    sendbuttons()
+                    
                     deleteReplay()
                                     
                     document.querySelector(`#content${num}`).value=""   
